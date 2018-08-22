@@ -38,4 +38,5 @@ test_script:
 
     bundle --version
 
-    ruby tests\ruby-compiler
+    ruby test\unit\test_compiler.rb
+
