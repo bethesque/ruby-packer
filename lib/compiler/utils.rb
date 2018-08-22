@@ -35,10 +35,13 @@ class Compiler
 
     def escape(arg)
       if Gem.win_platform?
-        if arg.include?('"')
+        if arg && arg[0] == '"' && arg[-1] == '"'
+          return arg
+        elsif arg && arg.include?('"')
           raise NotImplementedError, "Cannot escape #{arg} as it contains a double quote"
+        else
+          %Q{"#{arg}"}
         end
-        %Q{"#{arg}"}
       else
         Shellwords.escape(arg)
       end
